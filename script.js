@@ -1,4 +1,29 @@
-function getText(e){
-    const text = e.closest('td').previousElementSibling.textContent
-    window.location.href = 'remove.php?data=' + text
+function getText(e, phpLink) {
+    const getId = e.target.querySelector('li') ? e.target.querySelector('li').id : e.target.parentNode.querySelector('li').id
+    window.location.href = `${phpLink}?data=` + getId
 }
+
+function edit(e) {
+    const $contents = document.querySelectorAll('.postPage .postPage-Info')
+    const completeBtn = document.querySelector('.complete')
+    let i = 0;
+    $contents.forEach((edit) => {
+        i++
+        edit.innerHTML = i == 3 ? `<input type="datetime-local" name = "${edit.parentNode.classList}">` : `<input type="text" name = "${edit.parentNode.classList}">`
+    })
+    e.style.display = 'none'
+    completeBtn.style.display = 'block'
+}
+
+function completeEdit() {
+    const $contents = document.querySelectorAll('.postPage .postPage-Info input')
+    window.location.href = `edit.php?idx=${$contents[0].parentElement.parentElement.id}&title=${$contents[0].value}&user=${$contents[1].value}&date=${$contents[2].value}&des=${$contents[3].value}`
+
+}
+
+function addMsg() {
+    const id = document.querySelector('.title').id
+    const msgInfo = document.querySelectorAll('.send-message input')
+    location.href = `message.php?idx=${id}&user=${msgInfo[1].value}&msg=${msgInfo[0].value}`
+}
+

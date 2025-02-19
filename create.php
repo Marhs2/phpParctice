@@ -3,8 +3,9 @@
 require_once "db.php";
 require_once "lib.php";
 
-print_r($_POST);
-$name = $_POST["name"];
-echo $name;
-DB::exec("insert into users (name) values ('$name')");
-move('/','등록되었습니다.');
+$title = $_POST["title"];
+$des = $_POST["des"];
+$user = $_POST["user"];
+DB::exec("INSERT INTO `postinfo2`(`title`, `des`, `user` , `date`) VALUES ('$title', '$des', '$user' , '" . date("Y-m-d H:i:s") . "')");
+
+move("/index.php");
