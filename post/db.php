@@ -1,4 +1,20 @@
 <?php
+require_once "lib.php";
+
+session_start();
+header("Content-Type: text/html; charest=utf-8");
+
+$loginUrl = ["localhost/loginPage.php", "localhost/login.php", "localhost/singupPage.php", "localhost/singup.php"];
+
+if (!in_array($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], $loginUrl)) {
+	if (!isset($_SESSION["id"]) || empty($_SESSION)) {
+		alert("로그인 해주세요");
+		move("loginPage.php");
+	}
+}
+
+
+
 class DB
 {
 	static $db = null;
@@ -32,4 +48,3 @@ class DB
 		return $stmt->fetchAll();
 	}
 }
-

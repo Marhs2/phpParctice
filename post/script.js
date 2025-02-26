@@ -23,7 +23,9 @@ function completeEdit() {
 
 function addMsg() {
     const id = document.querySelector('.title').id
-    const msgInfo = document.querySelectorAll('.send-message input')
-    location.href = `message.php?idx=${id}&user=${msgInfo[1].value}&msg=${msgInfo[0].value}`
+    const msgInfo = document.querySelector('.send-message input')
+    if (!msgInfo.value.trim()) return alert("메세지를 입력해주세요");
+    location.href = `message.php?idx=${id}&msg=${msgInfo.value}`
+
 }
 

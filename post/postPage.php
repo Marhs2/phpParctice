@@ -13,6 +13,7 @@ $idx = $_GET['data'];
 $users = DB::fetchAll("select * from postInfo2 where idx = $idx");
 $msgs = DB::fetchAll("select idx,user , msg from message where talbeID = $idx");
 
+$imgEx = ["png","jpg" ,"gif"]
 
 ?>
 
@@ -46,6 +47,13 @@ $msgs = DB::fetchAll("select idx,user , msg from message where talbeID = $idx");
                 <div class="des">
                     <span>내용:</span> <span class="postPage-Info"><?= nl2br(htmlspecialchars($user->des)) ?></span>
                 </div>
+                <div class="file">
+                    <span>자료:</span> <?php if (in_array(pathinfo($user->file, PATHINFO_EXTENSION), $imgEx)) {
+                                            echo '<img src="uploads/' . $user->file . '">';
+                                        } else {
+                                            echo '<a href="uplaods/' . $user->file . '"> ' . $user->file . '</a>';
+                                        } ?></a></span>
+                </div>
             <?php endforeach ?>
         </div>
 
@@ -57,8 +65,7 @@ $msgs = DB::fetchAll("select idx,user , msg from message where talbeID = $idx");
 
         <div class="message">
             <div class="send-message">
-                <input type="text" name="msg" placeholder="메세지">
-                <input type="text" name="name" placeholder="닉네임">
+                <input type="text" name="msg" placeholder="메세지" required>
                 <button onclick="addMsg()">보내기</button>
             </div>
 

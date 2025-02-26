@@ -1,6 +1,9 @@
 <?php
 
 require_once "db.php";
+require_once "lib.php";
+
+
 
 function createUser($name)
 {
@@ -8,6 +11,7 @@ function createUser($name)
 }
 
 $users = DB::fetchAll('select * from postInfo2');
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -30,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 	<div class="dasboard">
+
+		<div class="profile">
+			<div>아이디: <?=$_SESSION["id"] ?></div>
+			<a href="./logout.php">로그아웃</a>
+		</div>
 
 		<form method="post">
 			<input type="text" name="search" placeholder="검색">

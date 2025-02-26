@@ -101,6 +101,11 @@ form>* {
     text-wrap: wrap;
 }
 
+.file img {
+    max-width: 800px;
+    max-height: 500px;
+}
+
 .postPage button {
     height: 50px;
 }
